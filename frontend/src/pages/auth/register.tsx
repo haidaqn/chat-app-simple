@@ -45,7 +45,7 @@ const Register = () => {
 
   return (
     <Form {...form}>
-      <form className="flex flex-col gap-5">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="flex flex-col gap-5">
         <FormField
           control={form.control}
           name="email"
