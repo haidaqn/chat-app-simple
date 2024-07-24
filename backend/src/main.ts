@@ -11,14 +11,21 @@ import { middleware } from './app.middleware';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { json, urlencoded } from 'express';
-import { ResponseInterceptor } from './shared';
-import { ConfigService } from '@nestjs/config';
+import { ResponseInterceptor } from './base';
 
 async function bootstrap() {
+  const isProduction = process.env.NODE_ENV === 'production';
   const app = await NestFactory.create<NestExpressApplication>(AppModule, {});
 
-  const config = app.get<ConfigService>(ConfigService);
-  const serviceAccountPath = config.get('firebase.serviceAccountPath');
+  // const config = app.get<ConfigService>(ConfigService);
+  // const serviceAccountPath = config.get('firebase.serviceAccountPath');
+  // if (serviceAccountPath) {
+  //   admin.initializeApp({
+  //     credential: admin.credential.cert(serviceAccountPath),
+  //   });
+  // }
+
+  if (isProduction) app.enable('trust proxy');
 
   app.useGlobalPipes(
     new ValidationPipe({

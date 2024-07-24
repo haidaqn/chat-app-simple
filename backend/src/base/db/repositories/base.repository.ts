@@ -7,6 +7,7 @@ import {
   QueryOptions,
   UpdateQuery,
   PipelineStage,
+  AggregateOptions,
 } from 'mongoose';
 
 export class BaseRepository<T> {
@@ -64,11 +65,15 @@ export class BaseRepository<T> {
     return this._repository.countDocuments(filter);
   }
 
-  aggregate(pipeline: PipelineStage[]) {
-    return this._repository.aggregate(pipeline);
+  aggregate(pipeline: PipelineStage[], options?: AggregateOptions) {
+    return this._repository.aggregate(pipeline, options);
   }
 
   insertMany(items: Omit<T, '_id'>[]) {
     return this._repository.insertMany(items);
+  }
+
+  getCollectionName() {
+    return this._repository.collection.name;
   }
 }
