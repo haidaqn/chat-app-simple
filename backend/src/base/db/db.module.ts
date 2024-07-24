@@ -1,9 +1,9 @@
 import { HttpModule } from '@nestjs/axios';
 import { Module } from '@nestjs/common';
 import { TerminusModule } from '@nestjs/terminus';
-import { MongooseModule, SchemaFactory } from '@nestjs/mongoose';
+import { getModelToken, MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import * as models from './models';
-import { DbService } from '.';
+import { DbService } from './services';
 import paginate from 'mongoose-paginate-v2';
 
 @Module({
