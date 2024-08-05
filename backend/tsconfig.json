@@ -29,5 +29,6 @@
     "skipLibCheck": true
   },
   "include": ["typings/global.d.ts", "src/**/*", "test/**/*", "bin/**/*"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules"],
+  "types": ["node", "Multer"]
 }

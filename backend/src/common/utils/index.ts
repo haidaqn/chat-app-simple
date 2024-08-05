@@ -1,0 +1,76 @@
+import mongoose from 'mongoose';
+
+export function isValidObjectId(id: string) {
+  const ObjectId = mongoose.Types.ObjectId;
+  if (ObjectId.isValid(id)) {
+    return String(new ObjectId(id)) === id;
+  }
+  return false;
+}
+
+export function randomString(length = 6): string {
+  let result = '';
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
+
+export function randomUuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+    const r = (crypto.getRandomValues(new Uint8Array(1))[0] & 0x0f) | 0x40;
+    return c === 'x' ? r.toString(16) : ((r & 0x3) | 0x8).toString(16);
+  });
+}
+
+export const slugify = (str: string) => {
+  str = str
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/^-+|-+$/g, '')
+    .replace(/[\s_-]+/g, '-');
+  return str;
+};
+
+export function shortCodify(str: string) {
+  str = str.toLowerCase();
+  return str.replace(/[^a-z0-9]/g, '');
+}
+
+export function enumToArray<T extends object>(enumObj: T): Array<T[keyof T]> {
+  return Object.keys(enumObj)
+    .filter((key) => isNaN(Number(key))) // Filter out numeric keys
+    .map((key) => enumObj[key as keyof T]);
+}
+
+export function compareArrayString(source: any[], dest: any[]) {
+  if (source.length !== dest.length) return false;
+
+  const sortedArr1 = source.slice().sort();
+  const sortedArr2 = dest.slice().sort();
+
+  for (let i = 0; i < sortedArr1.length; i++) {
+    if (sortedArr1[i] !== sortedArr2[i]) return false;
+  }
+
+  return true;
+}
+
+export function generateProjectCode(projectName: string, length = 5) {
+  const prefix = projectName.toUpperCase().replace(/\s+/g, '').slice(0, 3);
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let code = prefix;
+
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    code += characters[randomIndex];
+  }
+
+  return code;
+}

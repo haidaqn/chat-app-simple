@@ -1,7 +1,6 @@
 import { Global, Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { JwtModule } from '@nestjs/jwt';
-
 import { AuthSerializer } from './auth.serializer';
 import { AuthService } from './auth.service';
 import { JwtStrategy, JwtVerifyStrategy, LocalStrategy } from './strategies';

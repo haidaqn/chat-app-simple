@@ -11,31 +11,13 @@ export class User {
 
   @ApiProperty()
   @Prop()
-  avatar?: string;
-
-  @ApiProperty()
-  @Prop()
-  fullName: string;
-
-  @Prop({})
-  password?: string;
-
-  @ApiProperty()
-  @Prop({
-    type: String,
-    unique: true,
-  })
   email: string;
 
   @ApiProperty()
   @Prop()
-  emailVerified: boolean;
-
-  @ApiProperty()
-  @Prop({})
-  googleId?: string;
+  avatar: string;
 
   @ApiProperty()
   @Prop()
-  appleId?: string;
+  fullName: string;
 }

@@ -4,11 +4,11 @@ import { TerminusModule } from '@nestjs/terminus';
 import * as controllers from './controllers';
 import { DbModule } from './db';
 import { JwtService } from '@nestjs/jwt';
+import { StorageService } from './services';
 
 @Module({
   imports: [TerminusModule, HttpModule, DbModule],
   controllers: Object.values(controllers),
-  providers: [JwtService],
+  providers: [StorageService, JwtService],
 })
-
 export class BaseModule {}
