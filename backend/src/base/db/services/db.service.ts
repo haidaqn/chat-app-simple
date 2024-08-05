@@ -8,7 +8,11 @@ import { User } from '../models';
 export class DbService implements OnApplicationBootstrap {
   user: BaseRepository<User>;
 
-  constructor() {}
+  constructor(
+    @InjectModel(User.name) private readonly userModel: PaginateModel<User>,
+  ) {}
 
-  onApplicationBootstrap() {}
+  onApplicationBootstrap() {
+    this.user = new BaseRepository<User>(this.userModel);
+  }
 }

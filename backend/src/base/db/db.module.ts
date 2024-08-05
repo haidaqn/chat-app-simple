@@ -5,12 +5,13 @@ import { getModelToken, MongooseModule, SchemaFactory } from '@nestjs/mongoose';
 import * as models from './models';
 import { DbService } from './services';
 import paginate from 'mongoose-paginate-v2';
-import { MongoEvents } from './mongo-events.module';
+import { MongoEvents, MongoEventsModule } from './mongo-events.module';
 
 @Module({
   imports: [
     TerminusModule,
     HttpModule,
+    MongoEventsModule,
     MongooseModule.forFeatureAsync(
       Object.values(models).map((item) => ({
         name: item.name,
