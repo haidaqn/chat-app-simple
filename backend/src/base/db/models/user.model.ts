@@ -10,14 +10,26 @@ export class User {
   _id: mongoose.Schema.Types.ObjectId;
 
   @ApiProperty()
-  @Prop()
+  @Prop({ type: String })
   email: string;
 
   @ApiProperty()
-  @Prop()
-  avatar: string;
+  @Prop({ type: String, default: false })
+  avatar?: string;
 
   @ApiProperty()
-  @Prop()
+  @Prop({ type: String })
   fullName: string;
+
+  @ApiProperty()
+  @Prop({ type: String })
+  password: string;
+
+  @ApiProperty()
+  @Prop({ type: Number, required: false })
+  color?: number;
+
+  @ApiProperty()
+  @Prop({ type: Number, required: false })
+  profileSetup?: boolean;
 }
